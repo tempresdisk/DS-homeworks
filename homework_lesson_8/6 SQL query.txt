@@ -1,0 +1,26 @@
+SELECT
+	SupplierName,
+    Country,
+    ContactName,
+    Phone 
+FROM 
+	Suppliers
+WHERE
+	SupplierID
+IN
+(
+SELECT
+	Products.SupplierID
+FROM
+	OrderDetails
+JOIN
+	Products
+ON
+	Products.ProductID = OrderDetails.ProductID
+GROUP BY
+	Products.SupplierID
+ORDER BY
+	COUNT(OrderDetails.OrderID) DESC 
+LIMIT
+	5
+)

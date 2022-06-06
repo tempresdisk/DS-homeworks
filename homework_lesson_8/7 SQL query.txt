@@ -1,0 +1,14 @@
+SELECT
+	Customers.Country,
+    Categories.CategoryName,
+    SUM(OrderDetails.Quantity*Products.Price) AS SUMMARY 
+FROM
+	OrderDetails
+JOIN Categories ON Categories.CategoryID = Products.CategoryID
+JOIN Products ON Products.ProductID = OrderDetails.ProductID
+JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+JOIN Orders ON Orders.OrderID = OrderDetails.OrderID
+WHERE Customers.Country = 'Brazil'
+GROUP BY Categories.CategoryName
+ORDER BY SUMMARY DESC
+LIMIT 1

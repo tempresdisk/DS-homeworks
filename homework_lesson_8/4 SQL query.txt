@@ -1,0 +1,25 @@
+SELECT
+	Products.ProductName,OrderDetails.Quantity, Products.Price
+FROM 
+	OrderDetails
+LEFT JOIN
+	Products 
+ON
+	Products.ProductID = OrderDetails.ProductID
+WHERE
+	OrderDetails.OrderID =
+(
+SELECT
+	OrderDetails.OrderID
+FROM 
+	OrderDetails as OrderDetails
+LEFT JOIN
+	Products
+ON
+	OrderDetails.ProductID = Products.ProductID
+GROUP BY
+	OrderDetails.OrderID
+ORDER BY
+	SUM(OrderDetails.Quantity * Products.Price) DESC 
+LIMIT 1
+)

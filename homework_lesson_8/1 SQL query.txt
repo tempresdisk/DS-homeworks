@@ -1,0 +1,8 @@
+SELECT
+    CustomerName,
+    Country,
+    Address
+FROM
+    Customers
+WHERE
+    Country IN ('Germany', 'France') OR City = 'Madrid';

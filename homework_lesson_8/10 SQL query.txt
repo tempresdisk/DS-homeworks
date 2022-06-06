@@ -1,0 +1,16 @@
+SELECT
+    SUM(OrderDetails.Quantity) AS Total_amount_of_ordered_crab 
+FROM
+    OrderDetails
+WHERE
+    ProductID = 
+(
+    SELECT
+	ProductID
+    FROM
+    	Products
+    WHERE
+    	ProductName LIKE '%crab%'
+)
+GROUP BY
+    OrderDetails.ProductID

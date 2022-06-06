@@ -1,0 +1,12 @@
+SELECT
+	MAX(OrderDetails.Quantity * Products.Price) - MIN(OrderDetails.Quantity * Products.Price) AS MAX_DIFF
+FROM
+	Orders
+JOIN 
+	OrderDetails ON OrderDetails.OrderID = Orders.OrderID
+JOIN
+	Products ON Products.ProductID = OrderDetails.ProductID
+JOIN
+	Customers ON Customers.CustomerID = Orders.CustomerID
+WHERE
+	Customers.Country = 'USA'

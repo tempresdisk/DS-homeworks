@@ -1,0 +1,12 @@
+SELECT
+    Country,
+    COUNT() AS CustomersCount
+FROM
+    Customers
+GROUP BY
+    Country
+ORDER BY
+    CustomersCount DESC
+LIMIT
+    3
+

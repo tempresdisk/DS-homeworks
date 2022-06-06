@@ -1,0 +1,12 @@
+SELECT
+	s.ShipperName,
+	o.OrderDate
+FROM
+	Orders o,
+	Shippers s
+WHERE
+	s.ShipperID = (SELECT s.ShipperID FROM Shippers s, Orders o WHERE o.OrderDate = (SELECT DISTINCT(OrderDate) FROM Orders LIMIT 1 OFFSET 9))
+LIMIT
+	1
+OFFSET
+	9
